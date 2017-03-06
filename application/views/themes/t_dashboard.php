@@ -62,7 +62,7 @@
 											</li>
 											<li class="divider"></li>
 											<li>
-													<a href="#">View All</a>
+													<a href="<?php site_url("user/notification") ?>">View All</a>
 											</li>
 									</ul>
 							</li>
@@ -70,17 +70,14 @@
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
 									<ul class="dropdown-menu">
 											<li>
-													<a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+													<a href="<?php site_url("user/profile") ?>"><i class="fa fa-fw fa-user"></i> Profile</a>
 											</li>
 											<li>
-													<a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-											</li>
-											<li>
-													<a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+													<a href="<?php site_url("user/settings") ?>"><i class="fa fa-fw fa-gear"></i> Settings</a>
 											</li>
 											<li class="divider"></li>
 											<li>
-													<a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+													<a href="<?php site_url("user/logout") ?>"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
 											</li>
 									</ul>
 							</li>
@@ -115,7 +112,7 @@
 							</div>
 							<!-- /.row -->
 
-							<div class="row">
+							<!-- <div class="row">
 									<div class="col-lg-12">
 											<div id="message">
 												<div class="alert alert-info alert-dismissable">
@@ -124,7 +121,7 @@
 												</div>
 											</div>
 									</div>
-							</div>
+							</div> -->
 							<!-- /.row -->
 
 						  <?php echo $output;?>

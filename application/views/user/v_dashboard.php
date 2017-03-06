@@ -8,7 +8,7 @@
 										</div>
 										<div class="col-xs-9 text-right">
 												<div class="huge">26</div>
-												<div>New Comments!</div>
+												<div>Incoming Task</div>
 										</div>
 								</div>
 						</div>

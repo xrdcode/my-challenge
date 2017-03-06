@@ -1,0 +1,49 @@
+body {
+  /*background: #64b5f6;*/
+  background-image:url('background/blue_wallpaper.jpg');
+  background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-position: center;
+}
+
+.mymodal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .5 )
+                url('loading.svg')
+                50% 50%
+                no-repeat;
+}
+
+.message {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+}
+
+body.loading {
+    overflow: hidden;
+}
+
+body.loading .mymodal {
+    display: block;
+}
+
+.floating-box {
+  background: rgba(227, 242, 253, 0.7);
+  -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0,0.5);
+  -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+  border-radius: 10px;
+  position: relative;
+  min-width: 200px;
+  max-width: 350px;
+  left: 50%;
+  transform: translate(-50%, 25%);
+  opacity: 0.8;
+}
