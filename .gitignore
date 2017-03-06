@@ -1,2 +1,2 @@
-/vendor/
-/application/config/config.php
+vendor/*
+application/config/config.php
