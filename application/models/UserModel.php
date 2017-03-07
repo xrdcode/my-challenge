@@ -73,8 +73,11 @@ class UserModel extends CI_Model {
     return $data;
   }
 
-  public function getTaskCount() {
-    $this->db->select(*)
+  public function getTaskCount($userid) {
+    $this->db->select("*");
+    $this->db->where("userid", $userid);
+    $res = $this->db->get("saved_task");
+    return $res->num_rows();
   }
 
 }
