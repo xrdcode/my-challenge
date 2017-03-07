@@ -79,9 +79,7 @@ $(document).on({
               .find('.text-danger').remove();
               elem.after(value);
             })
-          } else {
-
-          }
+          } 
         }
       }
     });

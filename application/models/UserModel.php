@@ -9,14 +9,13 @@ class UserModel extends CI_Model {
   public function newUser($data = "") {
     if($data != "") {
       $this->db->insert("user", $data );
-      //$this->db->insert("settings", array("userid" => $userid, "alertremainder" => 1440, "inmute" = "false"));
       $data = array(
-  			"messages" => "Akun anda telah dibuat, silahkan masuk.",
+  			"messages" => "Account created, please sign in.",
   			"success" => TRUE
   		);
     } else {
       $data = array(
-  			"messages" => "Upss, telah terjadi kesalahan.",
+  			"messages" => "Oops, an error occured.",
   			"success" => FALSE
   		);
     }
@@ -56,6 +55,26 @@ class UserModel extends CI_Model {
     } else {
       return FALSE;
     }
+  }
+
+  public function saveTask($task) {
+    if($task != "") {
+      $this->db->insert("saved_task", $task );
+      $data = array(
+        "messages" => "Task created",
+        "success" => TRUE
+      );
+    } else {
+      $data = array(
+        "messages" => "Oops, an error occured.",
+        "success" => FALSE
+      );
+    }
+    return $data;
+  }
+
+  public function getTaskCount() {
+    $this->db->select(*)
   }
 
 }

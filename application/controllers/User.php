@@ -87,7 +87,8 @@ class User extends CI_Controller {
 		if($this->isLoggedIn()) {
 			$data = array(
 				"headTitle" => "Dashboard | ",
-				"subTitle" => "Simple Task Scheduler"
+				"subTitle" => "Simple Task Scheduler",
+				"active" => "dashboard"
 			);
 			$this->load->css("/assets/css/sb-admin.css");
 			$this->output->set_template('t_dashboard');
@@ -159,6 +160,73 @@ class User extends CI_Controller {
 	public function logout() {
 		$this->session->unset_userdata('logged_in');
 		redirect("user", "refresh");
+	}
+
+	/* core business */
+
+	public function newtask() {
+		if($this->isLoggedIn()) {
+			$this->load->model("DbModel");
+			$data = array(
+				"headTitle" => "Dashboard | ",
+				"subTitle" => "Create New Task",
+				"prior" => $this->DbModel->getPriorlist(),
+				"active" => "newtask",
+				"action" => site_url("user/saveTask")
+			);
+			$this->output->set_template('t_dashboard');
+			$this->load->css("/assets/css/sb-admin.css");
+			$this->load->css("/assets/css/bootstrap-datetimepicker.css");
+			$this->load->js("/assets/js/moment.js");
+			$this->load->js("/assets/js/bootstrap-datetimepicker.min.js");
+			$this->load->view("user/v_createtask", $data);
+		}
+	}
+
+	public function saveTask() {
+		$this->output->set_template("blank");
+		$this->form_validation->set_rules('title', 'Task Name', 'trim|required|max_length[50]');
+		$this->form_validation->set_rules('desc', 'Task Description', 'trim|required|max_length[255]');
+		$this->form_validation->set_rules('duedate', 'Due Date', 'trim|required');
+		$this->form_validation->set_rules('prior', 'Priority', 'trim|required');
+		$this->form_validation->set_error_delimiters('<p class="text text-danger">','</p>');
+
+		if(!$this->form_validation->run()) {
+			$data = array(
+				"messages" => "",
+				"success" => FALSE,
+				"formValid" => FALSE
+			);
+			foreach($_POST as $key => $value) {
+				$data['messages'][$key] = form_error($key);
+			}
+		} else {
+			$task = array(
+				"userid" => $this->session->userdata('logged_in')['userid'],
+				"title" => $this->input->post("title"),
+				"description" => $this->input->post("desc"),
+				"due_date" => $this->input->post("duedate") . ":00",
+				"priorityid" => $this->input->post("prior")
+			);
+			$this->load->model("UserModel");
+			$data = $this->UserModel->saveTask($task);
+			$data["formValid"] = TRUE;
+		}
+		echo json_encode($data);
+
+	}
+
+	public function viewtask($id = "") {
+		if($this->isLoggedIn()) {
+			$data = array(
+				"headTitle" => "Dashboard | ",
+				"subTitle" => "Task List",
+				"active" => "viewtask"
+			);
+			$this->output->set_template('t_dashboard');
+			$this->load->css("/assets/css/sb-admin.css");
+			$this->load->view("user/v_viewtask", $data);
+		}
 	}
 
 }
