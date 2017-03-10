@@ -55,7 +55,7 @@
       format: "YYYY-MM-DD HH:mm"
     });
 
-    $('#addask').submit(function(e){
+    $('#addTask').submit(function(e){
       e.preventDefault();
       var me = $(this);
 

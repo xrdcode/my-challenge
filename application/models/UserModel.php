@@ -76,8 +76,20 @@ class UserModel extends CI_Model {
   public function getTaskCount($userid) {
     $this->db->select("*");
     $this->db->where("userid", $userid);
+    $this->db->where("due_date >=", date('Y-m-d H:i:s'));
     $res = $this->db->get("saved_task");
     return $res->num_rows();
+  }
+
+  public function getTaskList($userid) {
+    $this->db->select("*");
+    $this->db->where("userid", $userid);
+    $res = $this->db->get("v_tasklist");
+    if($res->num_rows() > 0) {
+      return $res->result();
+    } else {
+      return FALSE;
+    }
   }
 
 }
