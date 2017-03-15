@@ -1,6 +1,7 @@
 <div id="jsonURL" style="display:none"><?php echo $jsonURL ?></div>
 <div class="row">
 		<div class="col-lg-3 col-md-6">
+			<a href="<?php echo site_url("user/viewtask"); ?>">
 				<div class="panel panel-primary">
 						<div class="panel-heading">
 								<div class="row">
@@ -13,16 +14,11 @@
 										</div>
 								</div>
 						</div>
-						<a href="<?php echo site_url("user/viewtask"); ?>">
-								<div class="panel-footer">
-										<span class="pull-left">View Details</span>
-										<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-										<div class="clearfix"></div>
-								</div>
-						</a>
 				</div>
+			</a>
 		</div>
 		<div class="col-lg-3 col-md-6">
+			<a href="<?php echo site_url("user/newtask"); ?>">
 				<div class="panel panel-green">
 						<div class="panel-heading">
 								<div class="row">
@@ -31,14 +27,8 @@
 										</div>
 								</div>
 						</div>
-						<a href="<?php echo site_url("user/newtask"); ?>">
-								<div class="panel-footer">
-										<span class="pull-left">New Task</span>
-										<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-										<div class="clearfix"></div>
-								</div>
-						</a>
 				</div>
+			</a>
 		</div>
 		<div class="col-lg-3 col-md-6">
 
