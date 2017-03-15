@@ -28,7 +28,9 @@
 
 	foreach($css as $file){
 	 	echo "\n\t\t";
-		?><link rel="stylesheet" href="<?php echo $file; ?>" type="text/css" /><?php
+		$fname = explode(".", $file);
+		$ext = end($fname);
+		?><link rel="<?php echo $ext == "less" ? "stylesheet/less" : "stylesheet"; ?>" href="<?php echo $file; ?>" type="text/css" /><?php
 	} echo "\n\t";
 
 	 foreach($js as $file){

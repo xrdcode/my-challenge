@@ -84,11 +84,29 @@ class UserModel extends CI_Model {
   public function getTaskList($userid) {
     $this->db->select("*");
     $this->db->where("userid", $userid);
+    $this->db->where("due_date >=", date('Y-m-d H:i:s'));
     $res = $this->db->get("v_tasklist");
     if($res->num_rows() > 0) {
       return $res->result();
     } else {
       return FALSE;
+    }
+  }
+
+  public function getTaskJson($userid) {
+    $this->db->select("due_date as date, title, description as location");
+    $this->db->where("userid", $userid);
+    $res = $this->db->get("saved_task");
+    if($res->num_rows() > 0) {
+      $dat = $res->result_array();
+      $i = 0;
+      foreach($dat as $row) {
+        $dat[$i]['date'] = substr($row['date'], 0, 10);
+        $i++;
+      }
+      return $dat;
+    } else {
+      return "";
     }
   }
 

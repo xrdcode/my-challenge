@@ -46,9 +46,15 @@ class User extends CI_Controller {
 				"headTitle" => "Dashboard | ",
 				"subTitle" => "Simple Task Scheduler",
 				"active" => "dashboard",
-				"incoming" => $this->UserModel->getTaskCount($userid)
+				"incoming" => $this->UserModel->getTaskCount($userid),
+				"jsonURL" => site_url("user/getTaskJson")
 			);
 			$this->load->css("/assets/css/sb-admin.css");
+			$this->load->css("/assets/css/clndr.less");
+			$this->load->js("/assets/js/less.js");
+			$this->load->js("/assets/js/underscore.js");
+			$this->load->js("/assets/js/moment.js");
+			$this->load->js("/assets/js/clndr.js");
 			$this->output->set_template('t_dashboard');
 			$this->load->view('user/v_dashboard', $data);
 		}
@@ -244,10 +250,20 @@ class User extends CI_Controller {
 			$data = $this->UserModel->saveTask($task);
 			$data["formValid"] = TRUE;
 		}
-		echo json_encode($data);
+		echo json_encode(print_r($data));
 
 	}
 
 	/* Non View Function*/
+
+	/* Get JSON */
+
+	public function getTaskJson() {
+		$this->output->set_template("blank");
+		$id = $this->session->userdata("logged_in")['userid'];
+		$this->load->model("UserModel");
+		$data = $this->UserModel->getTaskJson($id);
+		echo json_encode($data);
+	}
 
 }
